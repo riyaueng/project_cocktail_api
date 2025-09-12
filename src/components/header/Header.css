@@ -1,0 +1,44 @@
+header {
+  margin: 1rem;
+}
+
+.section_navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.section_hero {
+  padding: 2.5rem 0;
+}
+
+.section_hero h1 {
+  font-size: 3.25rem;
+  font-weight: 400;
+  line-height: 4.2rem;
+  margin-bottom: 1rem;
+}
+
+.section_hero p {
+  font-weight: 300;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.div_arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}

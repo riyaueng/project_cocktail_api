@@ -1,0 +1,63 @@
+:root {
+  font-family: "Montserrat-Variable", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+
+  /* color-scheme: light dark; */
+  color: white;
+  background-color: var(--color-bg-blue);
+
+  --font-h: "PlayfairDisplay-Variable";
+  --font-p: "Montserrat-Variable";
+  --color-active-blue: #6fc3df;
+  --color-bg-blue: #262b46;
+  --color-blue: #8ea9e8;
+  --color-red: #ec8d81;
+  --color-yellow: #e7b788;
+  --color-green: #87c5a4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Montserrat-Variable";
+  src: url("../public/fonts/Montserrat-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat-Italic-Variable";
+  src: url("../public/fonts/Montserrat-Italic-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "PlayfairDisplay-Variable";
+  src: url("../public/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "PlayfairDisplay-Italic-Variable";
+  src: url("../public/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-h);
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
