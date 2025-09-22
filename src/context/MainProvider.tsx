@@ -1,33 +1,33 @@
 import axios from "axios"
 import { createContext, useEffect, useState } from "react"
 import type { IDrink } from "../interfaces/ICategories"
-import type { ICocktail } from "../interfaces/ICocktails"
+import type { ICocktail, ICocktailDetails } from "../interfaces/ICocktails"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const mainContext = createContext<MainProviderProps | null>(null)
 
 export interface MainProviderProps {
   category: IDrink[] | null
-  setLink: React.Dispatch<React.SetStateAction<string>>
+  setLink: React.Dispatch<React.SetStateAction<string | undefined>>
   drinks: ICocktail[] | null
   setDrinks: React.Dispatch<React.SetStateAction<ICocktail[] | null>>
+  drinkId: ICocktailDetails[]
+  setDrinkId: React.Dispatch<React.SetStateAction<ICocktailDetails[] | null>>
 }
 
 export default function MainProvider({ children }: { children: React.ReactNode }) {
-  const [link, setLink] = useState<string>("home")
+  const [link, setLink] = useState<string | undefined>("home")
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [category, setCategory] = useState<IDrink[] | null>(null)
   const [drinks, setDrinks] = useState<ICocktail[] | null>(null)
-  // let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${link}`
+  const [drinkId, setDrinkId] = useState<ICocktailDetails[] | null>(null)
 
   // # -------- Fetch für Drinks-Auswahl --------
-
-  console.log(drinks)
 
   useEffect(() => {
     let url = ""
     const getDrinks = async () => {
-      if (!link) {
+      if (link) {
         if (link === "gin") {
           url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
         } else if (link === "margarita") {
@@ -39,9 +39,9 @@ export default function MainProvider({ children }: { children: React.ReactNode }
         } else if (link === "scotch") {
           url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=scotch"
         } else if (link === "random") {
-          url = "www.thecocktaildb.com/api/json/v1/1/random.php"
+          url = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
         } else if (link === "non_alcoholic") {
-          url = "www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic"
+          url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic"
         }
         try {
           const resp = await axios.get(url)
@@ -55,8 +55,6 @@ export default function MainProvider({ children }: { children: React.ReactNode }
     }
     getDrinks()
   }, [link])
-
-  console.log(link)
 
   // # -------- Fetch für Category-Buttons ----------
 
@@ -80,5 +78,9 @@ export default function MainProvider({ children }: { children: React.ReactNode }
     getCategoriesData()
   }, [link])
 
-  return <mainContext.Provider value={{ category, setLink, drinks, setDrinks }}>{children}</mainContext.Provider>
+  return (
+    <mainContext.Provider value={{ category, setLink, drinks, setDrinks, drinkId, setDrinkId }}>
+      {children}
+    </mainContext.Provider>
+  )
 }

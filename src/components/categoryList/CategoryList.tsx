@@ -10,7 +10,7 @@ export default function CategoryList() {
           CategoryItems.map((item: string, index) => {
             return (
               <div key={index} className="wrapper_categories_card">
-                <CategoryCard title={item} link={`category/${item.toLowerCase()}`} />
+                <CategoryCard item={item} />
               </div>
             )
           })}
