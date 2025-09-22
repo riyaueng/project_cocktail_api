@@ -1,16 +1,29 @@
-import React from "react"
-import type { ICategory, IDrink } from "../../interfaces/ICategories"
+import { useContext, useEffect } from "react"
+import "./CategoryCard.css"
+import { mainContext, type MainProviderProps } from "../../context/MainProvider"
+import { Link } from "react-router"
 
-interface CategoryItemProps {
-  item: IDrink
+interface CategoryCardProps {
+  title: string
+  link: string
 }
 
-export default function CategoryCard({ item }: CategoryItemProps) {
-  console.log(`Card: ${item}`)
+export default function CategoryCard(props: CategoryCardProps) {
+  const { setDrinks, setLink } = useContext(mainContext) as MainProviderProps
+
+  useEffect(() => {
+    setLink(props.title.toLowerCase())
+  }, [props.title])
+
+  console.log(props.link)
   return (
-    <div>
-      <h2>{item.strCategory}</h2>
-      <p>Ipsum dolor sit amet</p>
-    </div>
+    <>
+      <div>
+        <Link to={props.title}>
+          <h2>{props.title}</h2>
+          <p>Ipsum dolor sit amet</p>
+        </Link>
+      </div>
+    </>
   )
 }
